@@ -49,6 +49,12 @@
     </dependency>
     <dependency>
       <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-management</artifactId>
+      <version>1.3.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut</groupId>
       <artifactId>micronaut-http-server-netty</artifactId>
       <scope>compile</scope>
     </dependency>
