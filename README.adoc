@@ -1,0 +1,3 @@
+= Micronaut JSON Issue
+
+Trying to recreate an issue I'm experiencing with Micronaut parsing JSON from a POST body.
