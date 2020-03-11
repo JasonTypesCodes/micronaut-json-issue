@@ -2,12 +2,25 @@ package some.service;
 
 import java.math.BigDecimal;
 
-import io.micronaut.core.annotation.Introspected;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
-@Introspected
+@Entity
 public class Something {
+
+	@Id
+	@GeneratedValue
 	private Long id;
+
+	@NotBlank
+	@NotEmpty
 	private String name;
+
+	@NotBlank
+	@NotEmpty
 	private BigDecimal value;
 
 	public Long getId() {
