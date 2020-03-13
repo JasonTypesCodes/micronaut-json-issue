@@ -1,6 +1,15 @@
 micronaut:
   application:
     name: some-service
+  security:
+    enabled: true
+    intercept-url-map:
+      - pattern: /auth/**
+        access: isAuthenticated()
+      - pattern: /something/**
+        access: isAnonymous()
+      - pattern: /something-else/**
+        access: isAnonymous()
 endpoints:
   health:
     enabled: true

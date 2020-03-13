@@ -69,9 +69,8 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>io.micronaut.data</groupId>
-      <artifactId>micronaut-data-hibernate-jpa</artifactId>
-      <version>1.0.0</version>
+      <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-security</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -80,8 +79,14 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+        <groupId>io.micronaut.data</groupId>
+        <artifactId>micronaut-data-hibernate-jpa</artifactId>
+        <version>1.0.0</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
         <groupId>io.micronaut.configuration</groupId>
-        <artifactId>micronaut-jdbc-tomcat</artifactId>
+        <artifactId>micronaut-jdbc-hikari</artifactId>
         <scope>runtime</scope>
     </dependency>
     <dependency>

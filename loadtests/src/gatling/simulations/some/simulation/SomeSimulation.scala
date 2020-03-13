@@ -11,6 +11,8 @@ class SomeSimulation extends Simulation {
     .baseUrl(baseUrl)
     .header("Accept", "application/json")
 
+  val basicAuth = "Basic YWRtaW46YWRtaW4=" // Basic admin:admin
+
   def userCount: Int = getProperty("loadtests.users", "1000").toInt
   def baseUrl: String = getProperty("loadtests.baseurl", "http://localhost:8080")
   def rampDuration: Int = getProperty("loadtests.rampduration", "10").toInt
@@ -38,6 +40,14 @@ class SomeSimulation extends Simulation {
       .check(status.is(200)))
   }
 
+  def whoAmI() = {
+    exec(http("whoAmI")
+      .get("/auth")
+      .header("Authorization", basicAuth)
+      .check(jsonPath("$.name").is("admin"))
+      .check(status.is(200)))
+  }
+
   def createSomething() = {
       exec(http("createSomething")
           .post("/something")
@@ -46,11 +56,34 @@ class SomeSimulation extends Simulation {
           .check(status.is(201)))
   }
 
+  def getSomething() = {
+      exec(http("getSomething")
+          .get("/something/1")
+          .check(status.is(200)))
+  }
+
+  def getSomethingElse() = {
+      exec(http("getSomethingElse")
+          .get("/something-else/1")
+          .check(status.is(200)))
+  }
+
+  def createSomethingElse() = {
+      exec(http("createSomethingElse")
+          .post("/something-else")
+          .header("Content-Type", "application/json; charset=utf-8")
+          .body(StringBody("{\"valueOne\": \"The first value\", \"valueTwo\": \"The next value.\"}"))
+          .check(status.is(201)))
+  }
+
   /** * Scenario Design ***/
   val scn = scenario("Some Service Load Test")
     .repeat(1) {
       exec(getHealth())
+        .exec(whoAmI())
         .exec(createSomething())
+        //.exec(createSomethingElse())
+        //.exec(getSomething())
     }
 
   /** * Setup Load Simulation ***/

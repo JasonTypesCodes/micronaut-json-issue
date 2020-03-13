@@ -15,28 +15,28 @@ import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
 
-@Controller("/something")
+@Controller("/something-else")
 // @Secured(SecurityRule.IS_ANONYMOUS)
-public class SomethingResource {
+public class SomethingElseResource {
 
 	@Inject
-	SomethingRepository somethingRepository;
+	SomethingElseRepository somethingElseRepository;
 
 	@Post
-	public HttpResponse<Something> createSomething(@Valid @Body Something something) throws URISyntaxException {
-		if (something.getId() == null) {
-			something = somethingRepository.save(something);
-			return HttpResponse.<Something>created(new URI("/something/" + something.getId())).body(something);
+	public HttpResponse<SomethingElse> createSomethingElse(@Valid @Body SomethingElse somethingElse) throws URISyntaxException {
+		if (somethingElse.getId() == null) {
+			somethingElse = somethingElseRepository.save(somethingElse);
+			return HttpResponse.<SomethingElse>created(new URI("/something-else/" + somethingElse.getId())).body(somethingElse);
 		}
 
 		return HttpResponse.badRequest();
 	}
 
 	@Get("/{id}")
-	public HttpResponse<Something> getSomething(Long id) {
-		Optional<Something> result = somethingRepository.findById(id);
+	public HttpResponse<SomethingElse> getSomethingElse(Long id) {
+		Optional<SomethingElse> result = somethingElseRepository.findById(id);
 		if (result.isPresent()) {
-			return HttpResponse.<Something>ok(result.get());
+			return HttpResponse.<SomethingElse>ok(result.get());
 		}
 
 		return HttpResponse.notFound();
