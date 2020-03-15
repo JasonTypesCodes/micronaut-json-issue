@@ -1,3 +1,28 @@
 = Micronaut JSON Issue
 
 Trying to recreate an issue I'm experiencing with Micronaut parsing JSON from a POST body.
+
+== jhipster-micronaut Application
+
+The `jhipster-micronaut` folder contains an application generated with the WIP JHipster Micronaut generator.
+
+.Options used to generate the project
+. "Monolithic Application"
+. Webflux? `N`
+. Name? `jhipsterMicronaut`
+. Default Package? `io.github.jhipster.sample`
+. Auth Type? `JWT`
+. DB? `SQL`
+. Production DB? `MySQL`
+. Development DB? `H2 in-memory`
+. Cache? `ehcache`
+. Hibernate Cache? `Y`
+. Build? `Maven`
+. Other Technologies? `empty`
+. Client Framework? `Angular`
+. Bootswatch? `Default JHipster`
+. Enable i18n? `Y`
+. Native Language? `english`
+. Additional Languages? `none`
+. Other testing frameworks? `none`
+. Other generators? `N`
