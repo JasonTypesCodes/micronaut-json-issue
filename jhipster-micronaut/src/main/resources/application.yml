@@ -86,6 +86,9 @@ micronaut:
         access: ROLE_ADMIN
 
   executors:
+    io:
+      type: fixed
+      nThreads: 8
     scheduled:
       type: scheduled
       core-pool-size: 2
