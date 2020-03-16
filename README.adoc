@@ -2,7 +2,19 @@
 
 Trying to recreate an issue I'm experiencing with Micronaut parsing JSON from a POST body.
 
-== jhipster-micronaut Application
+== Running
+
+.To run the load tests
+. `cd jhipster-micronaut`
+. `./mvnw clean package`
+. `java -jar target/jhipster-micronaut-0.0.1-SNAPSHOT.jar`
+. Open a second terminal
+. `cd loadtests`
+. `./gradlew gatlingRun --rerun-tasks`
+
+Detailed output from the load tests will be output in `loadtests/gatling-output.log`
+
+== jhipster-micronaut Application Details
 
 The `jhipster-micronaut` folder contains an application generated with the WIP JHipster Micronaut generator.
 
