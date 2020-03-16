@@ -26,3 +26,68 @@ The `jhipster-micronaut` folder contains an application generated with the WIP J
 . Additional Languages? `none`
 . Other testing frameworks? `none`
 . Other generators? `N`
+
+After the project was generated, I generated the entities to match the sample application.
+
+*Note*: I received errors when trying to set up entity relationships on the first pass,
+so instead I would create the initial entities in one pass and then add the relationships in a second pass.
+
+.Initial Entity Generation (Pass 1)
+. `mhipster entity BankAccount`
+. Add field `name` as `String` with validation rule `Required`
+. Add field `balance` as `BigDecimal` with validation rule `Required`
+. Rest Controller should use the repository directly
+. Read only? `N`
+. Pagination? `N`
+. `mhipster entity Label`
+. Add field `label` as `String` with validation rules `Required` and `Minimum Length`.  Minimum length is 3.
+. Rest Controller should use the repository directly
+. Read only? `N`
+. Pagination? `N`
+. `mhipster entity Operation`
+. Add field `date` as `Instant` with validation rule `Required`
+. Add field `description` as `String` with no validation rules
+. Add field `amount` as `BigDecimal` with validation rule `Required`
+. Rest Controller should use the repository directly
+. Read only? `N`
+. Pagination? `Infinite Scroll`
+
+.Relationship Generation (Pass 2)
+. `mhipster entity BankAccount`
+. "Add more fields and relationships"
+. `? Do you want to add a relationship to another entity? Yes`
+. `? What is the name of the other entity? user`
+. `? What is the name of the relationship? user`
+. `? What is the type of the relationship? many-to-one`
+. `? When you display this relationship on client-side, which field from 'user' do you want to use? This field will be displayed as a String, so it cannot be a Blob login`
+. `? Do you want to add any validation rules to this relationship? No`
+. `? Do you want to add a relationship to another entity? Yes`
+. `? What is the name of the other entity? operation`
+. `? What is the name of the relationship? operation`
+. `? What is the type of the relationship? one-to-many`
+. `? What is the name of this relationship in the other entity? bankAccount`
+. `mhipster entity Label`
+. "Add more fields and relationships"
+. `? Do you want to add a relationship to another entity? Yes`
+. `? What is the name of the other entity? operation`
+. `? What is the name of the relationship? operation`
+. `? What is the type of the relationship? many-to-many`
+. `? Is this entity the owner of the relationship? No`
+. `? What is the name of this relationship in the other entity? label`
+. `mhipster entity Operation`
+. "Add more fields and relationships"
+. `? Do you want to add a relationship to another entity? Yes`
+. `? What is the name of the other entity? bankAccount`
+. `? What is the name of the relationship? bankAccount`
+. `? What is the type of the relationship? many-to-one`
+. `? When you display this relationship on client-side, which field from 'bankAccount' do you want to use? This field will be displayed as a String, so it cannot be a Blob name`
+. `? Do you want to add any validation rules to this relationship? No`
+. `? Do you want to add a relationship to another entity? Yes`
+. `? What is the name of the other entity? label`
+. `? What is the name of the relationship? label`
+. `? What is the type of the relationship? many-to-many`
+. `? Is this entity the owner of the relationship? Yes`
+. `? What is the name of this relationship in the other entity? label`
+. `? When you display this relationship on client-side, which field from 'label' do you want to use? This field will be displayed as a String, so it cannot be a Blob label`
+. `? Do you want to add any validation rules to this relationship? No`
+
