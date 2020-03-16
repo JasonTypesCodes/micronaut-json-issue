@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      <immediateFlush>false</immediateFlush>
+    </encoder>
+  </appender>
+  <root level="${logLevel}"> (1)
+    <appender-ref ref="CONSOLE"/>
+  </root>
+  <logger name="io.gatling.http.engine.response" level="TRACE" />
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>gatling-output.log</file>
+    <append>true</append>
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+    </encoder>
+  </appender>
+  <root level="TRACE">
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>
