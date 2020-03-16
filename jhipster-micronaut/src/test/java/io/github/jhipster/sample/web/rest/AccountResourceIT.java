@@ -7,7 +7,6 @@ import io.github.jhipster.sample.domain.User;
 import io.github.jhipster.sample.repository.AuthorityRepository;
 import io.github.jhipster.sample.repository.UserRepository;
 import io.github.jhipster.sample.security.AuthoritiesConstants;
-import io.github.jhipster.sample.service.MailService;
 import io.github.jhipster.sample.service.UserService;
 import io.github.jhipster.sample.service.dto.PasswordChangeDTO;
 import io.github.jhipster.sample.service.dto.UserDTO;
@@ -50,22 +49,11 @@ public class AccountResourceIT {
     @Inject AuthorityRepository authorityRepository;
     @Inject UserService userService;
     @Inject PasswordEncoder passwordEncoder;
-    @Inject MailService mailService;
     @Inject @Client("/") RxHttpClient client;
 
     @MockBean(UserService.class)
     UserService userService() {
         return mock(UserService.class);
-    }
-
-    @MockBean(MailService.class)
-    MailService mailService() {
-        return mock(MailService.class);
-    }
-
-    @BeforeEach
-    public void setup() {
-        doNothing().when(mailService).sendActivationEmail(any());
     }
 
     @Test

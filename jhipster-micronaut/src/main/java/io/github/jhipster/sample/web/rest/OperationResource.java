@@ -12,13 +12,10 @@ import io.micronaut.http.annotation.*;
 import io.micronaut.http.uri.UriBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+
+import io.micronaut.context.annotation.Value;
 import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
-
-
-
-
 
 import javax.annotation.Nullable;
 import javax.validation.Valid;
@@ -62,7 +59,7 @@ public class OperationResource {
         Operation result = operationRepository.mergeAndSave(operation);
         URI location = new URI("/api/operations/" + result.getId());
         return HttpResponse.created(result).headers(headers -> {
-            headers.location(location);    
+            headers.location(location);
             HeaderUtil.createEntityCreationAlert(headers, applicationName, true, ENTITY_NAME, result.getId().toString());
         });
     }
@@ -116,7 +113,7 @@ public class OperationResource {
     @Get("/operations/{id}")
     public Optional<Operation> getOperation(@PathVariable Long id) {
         log.debug("REST request to get Operation : {}", id);
-        
+
         return operationRepository.findOneWithEagerRelationships(id);
     }
 

@@ -4,7 +4,6 @@ package io.github.jhipster.sample.web.rest;
 import io.github.jhipster.sample.domain.User;
 import io.github.jhipster.sample.repository.UserRepository;
 import io.github.jhipster.sample.security.SecurityUtils;
-import io.github.jhipster.sample.service.MailService;
 import io.github.jhipster.sample.service.UserService;
 import io.github.jhipster.sample.service.dto.PasswordChangeDTO;
 import io.github.jhipster.sample.service.dto.UserDTO;
@@ -42,13 +41,9 @@ public class AccountResource {
 
     private final UserService userService;
 
-    private final MailService mailService;
-
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
-
+    public AccountResource(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
         this.userService = userService;
-        this.mailService = mailService;
     }
 
     /**
@@ -65,8 +60,7 @@ public class AccountResource {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-        mailService.sendActivationEmail(user);
+        userService.registerUser(managedUserVM, managedUserVM.getPassword());
     }
 
     /**
@@ -151,12 +145,7 @@ public class AccountResource {
      * @throws EmailNotFoundException {@code 400 (Bad Request)} if the email address is not registered.
      */
     @Post("/account/reset-password/init")
-    public void requestPasswordReset(@Body String mail) {
-        mailService.sendPasswordResetMail(
-           userService.requestPasswordReset(mail)
-               .orElseThrow(EmailNotFoundException::new)
-        );
-    }
+    public void requestPasswordReset(@Body String mail) {}
 
     /**
      * {@code POST   /account/reset-password/finish} : Finish to reset the password of the user.

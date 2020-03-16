@@ -5,15 +5,13 @@ import io.github.jhipster.sample.repository.BankAccountRepository;
 import io.github.jhipster.sample.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.sample.util.HeaderUtil;
+import io.micronaut.context.annotation.Value;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.uri.UriBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-
-
 
 import javax.annotation.Nullable;
 import javax.validation.Valid;
@@ -57,7 +55,7 @@ public class BankAccountResource {
         BankAccount result = bankAccountRepository.mergeAndSave(bankAccount);
         URI location = new URI("/api/bank-accounts/" + result.getId());
         return HttpResponse.created(result).headers(headers -> {
-            headers.location(location);    
+            headers.location(location);
             HeaderUtil.createEntityCreationAlert(headers, applicationName, true, ENTITY_NAME, result.getId().toString());
         });
     }
@@ -102,7 +100,7 @@ public class BankAccountResource {
     @Get("/bank-accounts/{id}")
     public Optional<BankAccount> getBankAccount(@PathVariable Long id) {
         log.debug("REST request to get BankAccount : {}", id);
-        
+
         return bankAccountRepository.findById(id);
     }
 
