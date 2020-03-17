@@ -2,3 +2,6 @@ build
 bin
 gatling-output.log
 .gradle
+.classpath
+.project
+.settings
